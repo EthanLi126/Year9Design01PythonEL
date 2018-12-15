@@ -9,18 +9,10 @@ root.configure(background= "powderblue")
 WaterAmount= [0]
 WaterNeed = [0]
 
-def reset():
-	WaterAmount[0]=0
-	WaterNeed[0]=0
-	x=0
-	slider.config(state = "normal")
-	slider.set(x)
-	slider.config(state = "disabled")
-	amountof.set(str(WaterAmount[0])+" oz/"+str(WaterNeed[0])+" oz")
 #age algorithm
 def addwater():
 
-	#print("***************")
+	print("***************")
 	try:
 		value=int(ageInput.get())
 	except ValueError:
@@ -61,7 +53,6 @@ def water8():
 	print("water8")
 	WaterAmount[0]=WaterAmount[0]+8
 	print(WaterAmount[0])
-	amountof.set(str(WaterAmount[0])+" oz/"+str(WaterNeed[0])+" oz")
 def waterC1():
 	print("waterC1")
 	try:
@@ -86,23 +77,7 @@ def waterC2():
 	print (WaterAmount[0])
 	amountof.set(str(WaterAmount[0])+" oz/"+str(WaterNeed[0])+" oz")
 
-
 	
-def setslider():
-	print("sliderset")
-	if int(WaterNeed[0])==0:
-		messagebox.showerror("Error","Please Enter Your Age")
-		WaterAmount[0]==0
-	else:
-		getnumber=int(WaterAmount[0])/int(WaterNeed[0])
-		x=getnumber*100
-		print(x)
-		slider.config(state = "normal")
-		slider.set(x)
-		slider.config(state = "disabled")
-
-
-
 
 
 
@@ -126,15 +101,13 @@ ageEnter = tk.Button(root, height = 1, width = 8, cursor = "hand1", text = "Ente
 ageEnter.grid (row=0, column =4)
 #//widget4//
 
-add1 = tk.Button(root, height = 2, width = 8, cursor = "hand1", text = "Add", command = lambda:[water8(),setslider()])
+add1 = tk.Button(root, height = 2, width = 8, cursor = "hand1", text = "Add", command = water8)
 add1.grid (row=2, column = 0, )
-add2 = tk.Button(root, height = 2, width = 8, cursor = "hand1", text = "Add", command = lambda:[waterC1(),setslider()])
+add2 = tk.Button(root, height = 2, width = 8, cursor = "hand1", text = "Add", command = waterC1)
 add2.grid (row=2, column = 2, )
-add3 = tk.Button(root, height = 2, width = 8, cursor = "hand1", text = "Add", command = lambda:[waterC2(),setslider()])
+add3 = tk.Button(root, height = 2, width = 8, cursor = "hand1", text = "Add", command = waterC2)
 add3.grid (row=2, column = 4, )
 #//widget8//
-
-
 under1 = tk.Label(root, height=2,width=8,text="8 oz",background="powderblue")
 under1.grid(row=3, column=0,)
 under1b = tk.Label(root, height=2,width=8,text="(1 Glass)",background="powderblue")
@@ -148,28 +121,18 @@ under2label= tk.Label(root,height=2, width = 10,text="\u2193Custom Input (oz)\u2
 under2label.grid(row=3,column=2,sticky="NESW",columnspan=4)
 #//Widget6$$
 spacelabel=tk.Label(root,background="powderblue",text="You Are:")
-spacelabel.grid(row=5,column=2,)
+spacelabel.grid(row=8,column=2,)
 #//widget7##
-
-#//widget8#
-drank = tk.Label(root, background="powderblue", height=2, text="You Have Drank:")
-drank.grid(row=8,column=1,columnspan=3)
-#//widget9//
-amountdrank = tk.Label(root,background="powderblue",textvariable=amountof)
-amountdrank.grid(row=9,column=1, columnspan=3)
-
 slider = tk.Scale(root, from_=0, to=100, orient=tk.HORIZONTAL)
 slider.config(state = "disabled")
 slider.grid(row=6, column=1, columnspan=3)
+#//widget8#
+drank = tk.Label(root, background="powderblue", height=2, text="You Have Drank:")
+drank.grid(row=7,column=1,columnspan=3)
+#//widget9//
+amountdrank = tk.Label(root,background="powderblue",textvariable=amountof)
+amountdrank.grid(row=8,column=2)
 
+reset=tk.Button
 
-
-#//widget10//
-
-hydrated=tk.Label(root,width=30,background="powderblue", text="(0 = Dehydrated, 100 = Hydrated)")
-hydrated.grid(row=7,column=0,columnspan=5)
-#//widget11//
-
-resetbutton=tk.Button(root,width=8,command=reset,text=("Reset All"))
-resetbutton.grid(row=10,column=2)
 root.mainloop()
